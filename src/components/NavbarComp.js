@@ -13,7 +13,7 @@ const NavbarComp = () => {
   };
 
   return (
-    <Navbar bg="primary" variant="dark">
+    <Navbar style={{ backgroundColor: "#1281F7" }} variant="dark">
       <Container>
         <Navbar.Brand>Project Manager App</Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">

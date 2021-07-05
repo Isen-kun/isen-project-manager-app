@@ -36,7 +36,11 @@ const Project = ({ docPro }) => {
         <Accordion.Toggle
           as={Card.Header}
           eventKey={docPro}
-          style={{ display: "flex", justifyContent: "space-between" }}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            // backgroundColor: "#43c7e8",
+          }}
         >
           <div className="pt-1">
             <CaretDownFill className="me-3" />
@@ -63,7 +67,10 @@ const Project = ({ docPro }) => {
             </Button>
           </ButtonGroup>
         </Accordion.Toggle>
-        <Accordion.Collapse eventKey={docPro}>
+        <Accordion.Collapse
+          eventKey={docPro}
+          // style={{ backgroundColor: "#88e5fc" }}
+        >
           <Card.Body>
             <TaskList projectId={docPro.id} />
           </Card.Body>

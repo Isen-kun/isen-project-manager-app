@@ -7,10 +7,11 @@ import { useState } from "react";
 import { PlusCircle } from "react-bootstrap-icons";
 import useFirestoreRead from "../hooks/useFirestoreRead";
 import Project from "./Project";
+import Footer from "./Footer";
 
 const Home = () => {
-  const { docs } = useFirestoreRead("projects");
   const { currentUser } = useContext(AuthContext);
+  const { docs } = useFirestoreRead("projects", currentUser.uid);
   const [projectAdder, setProjectAdder] = useState(false);
   const [projectName, setProjectName] = useState("");
 
@@ -27,7 +28,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <>
       <NavbarComp />
       <div
         className="pt-4 pb-3"
@@ -85,7 +86,8 @@ const Home = () => {
           ) : null;
         })}
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

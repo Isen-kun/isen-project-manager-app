@@ -4,9 +4,12 @@ import { Button, FormControl } from "react-bootstrap";
 import { PlusCircle } from "react-bootstrap-icons";
 import useFirestoreRead from "../hooks/useFirestoreRead";
 import Task from "./Task";
+import { AuthContext } from "../contexts/AuthContext";
+import { useContext } from "react";
 
 const TaskList = ({ projectId }) => {
-  const { docs } = useFirestoreRead("tasks");
+  const { currentUser } = useContext(AuthContext);
+  const { docs } = useFirestoreRead("tasks", currentUser.uid);
   const [taskAdder, setTaskAdder] = useState(false);
   const [taskName, setTaskName] = useState("");
 
@@ -16,6 +19,7 @@ const TaskList = ({ projectId }) => {
       title: taskName,
       completed: false,
       createdAt: timestamp(),
+      owner: currentUser.uid,
     };
     projectFirestore.collection("tasks").add(data);
     setTaskName("");

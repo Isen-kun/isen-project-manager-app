@@ -5,6 +5,7 @@ import SignIn from "./components/SignIn";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { AuthContextProvider } from "./contexts/AuthContext";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
             <Route exact path="/signin">
               <SignIn />
             </Route>
-            <Route exact path="/home">
+            {/* <Route exact path="/home">
               <Home />
-            </Route>
+            </Route> */}
+            <PrivateRoute exact path="/home" component={Home} />
           </Switch>
         </AuthContextProvider>
       </Container>
