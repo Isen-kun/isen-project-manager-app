@@ -1,19 +1,27 @@
-import useFirestoreRead from "../hooks/useFirestoreRead";
+import { projectFirestore, timestamp } from "../Firebase/config";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
 import NavbarComp from "./NavbarComp";
 import { Button, FormControl } from "react-bootstrap";
 import { useState } from "react";
 import { PlusCircle } from "react-bootstrap-icons";
-import Projects from "./Projects";
+import useFirestoreRead from "../hooks/useFirestoreRead";
+import Project from "./Project";
 
 const Home = () => {
+  const { docs } = useFirestoreRead("projects");
   const { currentUser } = useContext(AuthContext);
-  // const { docs } = useFirestoreRead("projects");
   const [projectAdder, setProjectAdder] = useState(false);
   const [projectName, setProjectName] = useState("");
 
   const handleProjectAddition = () => {
+    let data = {
+      owner: currentUser.uid,
+      title: projectName,
+      completed: false,
+      createdAt: timestamp(),
+    };
+    projectFirestore.collection("projects").add(data);
     setProjectName("");
     setProjectAdder(false);
   };
@@ -29,7 +37,9 @@ const Home = () => {
           alignItems: "center",
         }}
       >
-        <Button onClick={() => setProjectAdder(true)}>Add a project</Button>
+        <Button onClick={() => setProjectAdder(!projectAdder)}>
+          Add a project
+        </Button>
         {projectAdder && (
           <>
             <FormControl
@@ -40,13 +50,41 @@ const Home = () => {
                 setProjectName(e.target.value);
               }}
             />
-            <Button variant="secondary" onClick={handleProjectAddition}>
+            <Button
+              variant="primary"
+              onClick={handleProjectAddition}
+              style={{
+                borderRadius: "50%",
+                display: "flex",
+                verticalAlign: "middle",
+              }}
+              className="p-2"
+            >
               <PlusCircle />
             </Button>
           </>
         )}
       </div>
-      <Projects />
+      <div>
+        <h4 className="p-3">Ongoing Projects:</h4>
+        {docs.length === 0 ? (
+          <h6 className="ps-4">Click add project to start a new Project.</h6>
+        ) : null}
+        {docs.map((project) => {
+          return project.completed ? null : (
+            <Project key={project.id} docPro={project} />
+          );
+        })}
+        <h4 className="p-3">Completed Projects: </h4>
+        {docs.length === 0 ? (
+          <h6 className="ps-4">You havent completed any projects yet.</h6>
+        ) : null}
+        {docs.map((project) => {
+          return project.completed ? (
+            <Project key={project.id} docPro={project} />
+          ) : null;
+        })}
+      </div>
     </div>
   );
 };
