@@ -45,15 +45,16 @@ const SignUp = () => {
       className="d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}
     >
-      <Col className="p-3 py-5" style={{ textAlign: "center" }}>
+      <Col sm={12} md={7} className="p-3" style={{ textAlign: "center" }}>
         <h1>Welcome to Project Manager.</h1>
         <h4>In order to continue you need to sign up or login.</h4>
       </Col>
-      <Col>
-        <Card
-          className="p-3 w-100"
-          style={{ maxWidth: "400px", minWidth: "200px" }}
-        >
+      <Col
+        sm={12}
+        md={5}
+        className="d-flex justify-content-center align-items-center"
+      >
+        <Card className="p-3 w-100" style={{ maxWidth: "400px" }}>
           <Card.Body>
             <h2 className="text-center mb-3">Sign Up</h2>
           </Card.Body>
