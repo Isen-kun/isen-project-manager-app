@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useState } from "react";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
@@ -41,60 +41,65 @@ const SignUp = () => {
   }
 
   return (
-    <div
+    <Row
       className="d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}
     >
-      <div className="p-5">
+      <Col className="p-3 py-5" style={{ textAlign: "center" }}>
         <h1>Welcome to Project Manager.</h1>
         <h4>In order to continue you need to sign up or login.</h4>
-      </div>
-      <Card className="p-3 w-100" style={{ maxWidth: "400px" }}>
-        <Card.Body>
-          <h2 className="text-center mb-3">Sign Up</h2>
-        </Card.Body>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword2">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Repeat Password"
-              value={rePass}
-              onChange={(e) => setRePass(e.target.value)}
-            />
-          </Form.Group>
-          <Button
-            variant="primary"
-            type="submit"
-            className="w-100"
-            disabled={loading}
-          >
-            Sign Up
-          </Button>
-        </Form>
-        <div className="w-100 text-center p-2">
-          Already have an account? <Link to="/signin">Sign In</Link>
-        </div>
-      </Card>
-    </div>
+      </Col>
+      <Col>
+        <Card
+          className="p-3 w-100"
+          style={{ maxWidth: "400px", minWidth: "200px" }}
+        >
+          <Card.Body>
+            <h2 className="text-center mb-3">Sign Up</h2>
+          </Card.Body>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword2">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Repeat Password"
+                value={rePass}
+                onChange={(e) => setRePass(e.target.value)}
+              />
+            </Form.Group>
+            <Button
+              variant="primary"
+              type="submit"
+              className="w-100"
+              disabled={loading}
+            >
+              Sign Up
+            </Button>
+          </Form>
+          <div className="w-100 text-center p-2">
+            Already have an account? <Link to="/signin">Sign In</Link>
+          </div>
+        </Card>
+      </Col>
+    </Row>
   );
 };
 

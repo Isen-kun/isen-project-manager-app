@@ -20,7 +20,7 @@ const SignIn = () => {
       setLoading(true);
       await signin(email, pass);
     } catch {
-      setError("Failed to create an account.");
+      setError("Failed to find your account.");
     }
     setLoading(false);
     setEmail("");

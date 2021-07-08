@@ -13,10 +13,11 @@ const NavbarComp = () => {
   };
 
   return (
-    <Navbar style={{ backgroundColor: "#1281F7" }} variant="dark">
+    <Navbar style={{ backgroundColor: "#408cf7" }} variant="dark" expand="sm">
       <Container>
         <Navbar.Brand>Project Manager App</Navbar.Brand>
-        <Navbar.Collapse className="justify-content-end">
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end py-1">
           <Navbar.Text className="pe-3">
             Signed In as: {currentUser.email}
           </Navbar.Text>

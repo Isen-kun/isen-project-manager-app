@@ -10,7 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 function App() {
   return (
     <Router>
-      <Container className="sm">
+      <Container>
         <AuthContextProvider>
           <Switch>
             <Route exact path="/">

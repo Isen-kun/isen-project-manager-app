@@ -6,13 +6,15 @@ const Footer = () => {
       className="footer pt-3 pb-1"
       style={{
         position: "relative",
-        marginTop: "50vh",
-        background: "#1281F7",
+        // marginTop: "50vh",
+        //set parent conatiner flex, flexdirection column and min height 100vh to make sticky footer
+        marginTop: "auto",
+        background: "#408cf7",
         color: "white",
         textAlign: "center",
       }}
     >
-      <p className="lead">
+      <p>
         This Application was created using React JS and Boostrap for Front-end
         and Firebase was used in the Back-end.
         <br />

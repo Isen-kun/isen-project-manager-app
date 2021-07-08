@@ -28,7 +28,13 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
       <NavbarComp />
       <div
         className="pt-4 pb-3"
@@ -38,9 +44,21 @@ const Home = () => {
           alignItems: "center",
         }}
       >
-        <Button onClick={() => setProjectAdder(!projectAdder)}>
+        {projectAdder ? (
+          <Button
+            variant="danger"
+            onClick={() => setProjectAdder(!projectAdder)}
+          >
+            Close
+          </Button>
+        ) : (
+          <Button onClick={() => setProjectAdder(!projectAdder)}>
+            Add a project
+          </Button>
+        )}
+        {/* <Button onClick={() => setProjectAdder(!projectAdder)}>
           Add a project
-        </Button>
+        </Button> */}
         {projectAdder && (
           <>
             <FormControl
@@ -66,7 +84,7 @@ const Home = () => {
           </>
         )}
       </div>
-      <div>
+      <div className="pb-5">
         <h4 className="p-3">Ongoing Projects:</h4>
         {docs.length === 0 ? (
           <h6 className="ps-4">Click add project to start a new Project.</h6>
@@ -87,7 +105,7 @@ const Home = () => {
         })}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
